@@ -20,7 +20,7 @@
      },
      {
         "src": "/(.*)",
-        "dest": "/lmsclient/dist/$1"
+        "dest": "/lmsclient/build/$1"
       }
     ]
    }

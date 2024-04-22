@@ -7,7 +7,7 @@
    },
    {
       "src": "./lmsclient/package.json",
-      "use": "@vercel/static-build" 
+      "use": "@vercel/node" 
     }
   ],
    "routes": [

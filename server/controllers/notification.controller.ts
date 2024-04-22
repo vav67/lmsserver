@@ -2,6 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import { CatchAsyncError } from "../middleware/catchAsyncErrors";
 import ErrorHandler from "../utils/ErrorHandler";
 import NotificationModel from "../models/notificationModel";
+
+import connectDB from "../utils/db"; 
+
 import cron from 'node-cron';
 
 
@@ -9,6 +12,8 @@ import cron from 'node-cron';
 export const getNotifications = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      // соединение с бд
+  await connectDB();
   // получение сортировка    
  const notifications = await NotificationModel.find().sort({
         createdAt: -1,
@@ -26,6 +31,8 @@ res.status(201).json({success: true, notifications,});
 export const updatedNotification = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+         // соединение с бд
+  await connectDB();
    //ищем уведомление   
       const notification = await NotificationModel.findById(req.params.id);
       if (!notification) {

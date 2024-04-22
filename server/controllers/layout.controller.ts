@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import ErrorHandler from "../utils/ErrorHandler";
 import { CatchAsyncError } from "./../middleware/catchAsyncErrors";
 import LayoutModel from "../models/layout.model";
+import connectDB from "../utils/db"; 
 
 //create layout
 export const createLayout = CatchAsyncError(
@@ -10,6 +11,9 @@ export const createLayout = CatchAsyncError(
     try {
   // получим тип    
       const { type } = req.body;
+
+    // соединение с бд
+    await connectDB();
 
       const isTypeExist = await LayoutModel.findOne({ type });
 //console.log(" тип isTypeExist=", isTypeExist )
@@ -83,6 +87,9 @@ export const editLayout = CatchAsyncError(
    // // получим тип  
       const { type } = req.body;
    
+    // соединение с бд
+    await connectDB();
+
       if (type === "Banner") {
  const bannerData: any = await LayoutModel.findOne({ type: "Banner" });
   const { image, title, subTitle } = req.body;
@@ -171,7 +178,11 @@ export const getLayoutByType = CatchAsyncError(
       console.log('======СЕРВЕР ------баннер--getLayoutByType' )
       const { type } = req.params  //- это параметром
    //   const { type } = req.body  // - это внутри тела
-  //выбираем нужный тип
+  
+  
+    // соединение с бд
+    await connectDB();
+   //выбираем нужный тип
       const layout = await LayoutModel.findOne({ type });
  
       console.log('баннер--getLayoutByType layout=', layout )

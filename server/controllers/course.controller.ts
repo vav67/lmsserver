@@ -4,8 +4,11 @@ import ErrorHandler from "../utils/ErrorHandler";
 import cloudinary from "cloudinary";
  import { createCourse, getAllCoursesService } from "../services/course.service";
   import CourseModel from "../models/course.model";
+
+  import connectDB from "../utils/db"; 
   import { redis } from "../utils/redis";
   import mongoose from "mongoose";
+  
   import ejs from "ejs";
   import path from "path";
   import sendEmail from "../utils/sendMail";
@@ -51,6 +54,9 @@ export const editCourse = CatchAsyncError(
 
     //как параметр
  const courseId = req.params.id;//индетификатор курса
+
+  // соединение с бд
+  await connectDB();
 
  const courseData = await CourseModel.findById(courseId) as any;
 
@@ -115,6 +121,8 @@ export const getSingleCourse = CatchAsyncError(
      const courseId = req.params.id;
 //есть ли в редис
     const isCacheExist = await redis.get(courseId);
+   
+
  //если есть , то   
       if (isCacheExist) {
     //тогда берем    
@@ -122,6 +130,8 @@ export const getSingleCourse = CatchAsyncError(
    //ок, отдаем     
        res.status(200).json({ success: true,  course /*  */, });
       }   else {
+          // соединение с бд
+     await connectDB();
    //используем оператор выбора(из courseDataSchema неотправлять) -courseData.videoUrl ...      
         const course = await CourseModel.findById(req.params.id).select(
  "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
@@ -145,6 +155,8 @@ export const getSingleCourse = CatchAsyncError(
 export const getAllCourses = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+        // соединение с бд
+     await connectDB();
 //есть ли в редис
 // он не захотел const isCacheExist = await redis.get("allCourses");
 //если есть , то   
@@ -180,6 +192,8 @@ export const getCourseByUser = CatchAsyncError(
   //айди курса - код
       const courseId = req.params.id;
     // console.log( 'код курса courseId = ', courseId  )
+      // соединение с бд
+      await connectDB();
 // ищем курс
       const courseExists = userCourseList?.find(
         (course: any) => course._id.toString() === courseId
@@ -214,6 +228,9 @@ export const addQuestion = CatchAsyncError(
 //получаем коды айди и наш контекст айди      
       const { question, courseId, contentId }: IAddQuestionData = req.body;
       
+       // соединение с бд
+       await connectDB();
+
       const course = await CourseModel.findById(courseId);
 //проверяем валидность 
       if (!mongoose.Types.ObjectId.isValid(contentId)) {
@@ -269,6 +286,9 @@ export const addAnswer = CatchAsyncError(
     try {
     //получаем коды айди и наш контекст айди    
 const { answer, courseId, contentId, questionId }: IAddAnswerData = req.body;
+
+  // соединение с бд
+  await connectDB();
 
       const course = await CourseModel.findById(courseId);
 //проверяем валидность 
@@ -333,7 +353,7 @@ const { answer, courseId, contentId, questionId }: IAddAnswerData = req.body;
          path.join(__dirname, "../mails/question-reply.ejs"),
        data
      );
-console.log( 'отправка почты на ', question.user.email)
+//console.log( 'отправка почты на ', question.user.email)
 //---- отправка почты ----------
       try {
           await   sendEmail ({
@@ -382,6 +402,9 @@ export const addReview = CatchAsyncError(
           new ErrorHandler("Нет доступа к курсу You are not eligible to access this course", 404)
         );
       }
+
+        // соединение с бд
+     await connectDB();
       //найдем курс
       const course = await CourseModel.findById(courseId);
 
@@ -443,6 +466,10 @@ export const addReplyToReview = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { comment, courseId, reviewId } = req.body as IAddReviewData;
+
+  // соединение с бд
+  await connectDB();
+
 //найдем курс
       const course = await CourseModel.findById(courseId);
 //если курса нету
@@ -494,6 +521,8 @@ export const deleteCourse = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
+        // соединение с бд
+     await connectDB();
 //ищем курс
       const course = await CourseModel.findById(id);
 

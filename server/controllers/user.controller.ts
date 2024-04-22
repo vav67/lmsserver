@@ -13,7 +13,9 @@ import jwt, { JwtPayload, Secret } from "jsonwebtoken";
     sendToken,
                   } from "../utils/jwt";
  
- import { redis } from "../utils/redis";
+   import connectDB from "../utils/db"; 
+  import { redis } from "../utils/redis";
+
   import {
     getAllUsersService,  getUserById,
     updateUserRoleService,
@@ -37,7 +39,8 @@ export const registrationUser = CatchAsyncError(
     try {
       const { name, email, password } = req.body;
 
-     
+      // соединение с бд
+ await connectDB();
       const isEmailExist = await userModel.findOne({ email });
    
    
@@ -134,6 +137,9 @@ export const activateUser = CatchAsyncError(
   //тогда новый пользователь
       const { name, email, password } = newUser.user;
 
+  // соединение с бд
+  await connectDB();
+
    // проверка на существование   
       const existUser = await userModel.findOne({ email });
 
@@ -172,6 +178,10 @@ export const loginUser = CatchAsyncError(
         return next(new ErrorHandler("Please enter email and password", 400));
       }
 
+   // соединение с бд
+   await connectDB();
+   
+   
       const user = await userModel.findOne({ email }).select("+password");
 
       if (!user) {
@@ -315,6 +325,9 @@ export const socialAuth = CatchAsyncError(
     try {
       const { email, name, avatar } = req.body as ISocialAuthBody;
 
+        // соединение с бд
+ await connectDB();
+
       const user = await userModel.findOne({ email });
       
       if (!user) {
@@ -343,6 +356,10 @@ export const updateUserInfo = CatchAsyncError(
     try {
       const { name  } = req.body as IUptadeUserInfo;
       const userId = req.user?._id;
+   
+     // соединение с бд
+ await connectDB();
+
       //находим пользователя
       const user = await userModel.findById(userId);
 
@@ -388,6 +405,9 @@ export const updateUserPassword = CatchAsyncError(
         );
       }
 
+  // соединение с бд
+  await connectDB();
+
       const user = await userModel.findById(req.user?._id).select("+password");
 
       if (user?.password === undefined) {
@@ -429,7 +449,11 @@ export const updateProfilePicture = CatchAsyncError(
       const { avatar } = req.body as IUpdateProfilePicture;
 
       const userId = req.user?._id;
-// найдем юзера
+  
+      // соединение с бд
+  await connectDB();
+
+      // найдем юзера
 const user = await userModel.findById(userId).select("+password");
 
       if (avatar && user) {
@@ -500,6 +524,9 @@ export const updateUserRole = CatchAsyncError(
     try {
    //   console.log( 'updateUserRole  req.body= ', req.body)
       const {  email, role } = req.body;
+        // соединение с бд
+ await connectDB();
+
     const isUserExist = await userModel.findOne({ email });
 
    if (isUserExist) {
@@ -524,6 +551,9 @@ export const deleteUser = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
+  // соединение с бд
+  await connectDB();
+
 //ищем пользователя
       const user = await userModel.findById(id);
 

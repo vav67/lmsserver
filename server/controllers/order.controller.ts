@@ -10,6 +10,7 @@ import CourseModel from "../models/course.model";
   import { getAllOrdersService, newOrder } from "../services/order.service";
       import NotificationModel from "../models/notificationModel";
       
+      import connectDB from "../utils/db"; 
       import { redis } from "../utils/redis";
 
       require("dotenv").config();
@@ -40,7 +41,11 @@ if (payment_info) {
 }
 
 //-----------------------------------
-    //найдем нашего пользователя
+
+  // соединение с бд
+  await connectDB();
+
+//найдем нашего пользователя
       const user = await userModel.findById(req.user?._id);
 console.log( '=======================',user?.courses,'----курс user=', user?.name,"поста= ", user?.email)
 

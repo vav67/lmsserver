@@ -19,16 +19,15 @@ app.use(express.json({ limit: "50mb" }))
 //cookie parser
   app.use(cookieParser())
 // cors => cross origin resource sharing
-//пока  app.use(
-//пока      //cors({  origin: process.env.ORIGIN, })
-//пока      cors({
-//пока                                           // origin: ['http://localhost:3000'],
-//пока      origin: process.env.ORIGIN,
-//пока       credentials: true
-//пока     })
-//пока    )
-//заменил на
-app.use(cors());
+  app.use(
+     //cors({  origin: process.env.ORIGIN, })
+      cors({
+                                           // origin: ['http://localhost:3000'],
+      origin: process.env.ORIGIN,
+       credentials: true
+     })
+    )
+
 
 
 

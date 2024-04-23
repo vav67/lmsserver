@@ -51,7 +51,7 @@ refreshToken: builder.query({
  //выполняем загрузку юзеров    
     OLdloadUser: builder.query({
       query: (data) => ({
-        url: "me",
+        url: "memmmmmm",
         method: "GET",
         credentials: "include" as const,
       }),

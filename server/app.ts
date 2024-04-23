@@ -14,19 +14,43 @@ import userRouter from "./routes/user.route";
   import layoutRouter from "./routes/layout.route";
   import { rateLimit } from 'express-rate-limit'  //ограничение против спама
 
+
+  //const allowedOrigins = process.env.ORIGIN 
+  
+const allowedOrigins = ['http://localhost:3000' ];
+  app.use(cors({
+
+    origin: function(origin, callback){
+      // разрешаем запросы без происхождения
+       // (например, мобильные приложения или запросы на curl)
+      if(!origin) return callback(null, true);
+      
+      if(allowedOrigins.indexOf(origin)  === -1){
+        var msg = 'The CORS policy for this site does not ' +
+                  'allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+  
+   
+  
+    credentials: true,
+  }));
+
 // body parser
 app.use(express.json({ limit: "50mb" }))
 //cookie parser
   app.use(cookieParser())
 // cors => cross origin resource sharing
-  app.use(
-     //cors({  origin: process.env.ORIGIN, })
-      cors({
-                                           // origin: ['http://localhost:3000'],
-      origin: process.env.ORIGIN,
-       credentials: true
-     })
-    )
+  // app.use(
+  //    //cors({  origin: process.env.ORIGIN, })
+  //     cors({
+  //                                          // origin: ['http://localhost:3000'],
+  //     origin: process.env.ORIGIN,
+  //      credentials: true
+  //    })
+  //   )
 
 
 
@@ -39,7 +63,23 @@ const limiter = rateLimit({
   legacyHeaders: false,
 })
 
+//------------------------------------------------
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+if (req.method == "OPTIONS") {
+  res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+  return res.status(200).json({});
+}
 
+next();
+});
+
+
+//---------------------------------
 
 //router
 app.use( "/api/v1",

@@ -38,9 +38,9 @@ const initializeApp = async () => {
  //вызываем токен обновления 06-45-45 
  // 07-58-46 это теперь отключено 
  // так как это обновление полностью  работает над серверной частью
- // await store.dispatch(
+  //  await store.dispatch(
   //   apiSlice.endpoints.refreshToken.initiate({}, { forceRefetch: true }) 
-  // );
+  //  );
 
   
   //пока await store.dispatch(

@@ -14,7 +14,12 @@ const nextConfig = {
         hostname: 'randomuser.me',
         pathname: '**',
       },
-     
+      
+      {
+        protocol: 'https',
+        hostname: 'lmsserver-eta.vercel.app',
+        pathname: '**',
+      },     
   ],
     }, 
 

@@ -44,7 +44,7 @@ const Page: FC<Props> = (props) => {
         {/* <Reviews /> */}
      {/* <FAQ />    */}
      < PProba />
-             <Footer /> 
+             {/* <Footer />  */}
     </div>
   );
 };

@@ -41,9 +41,12 @@ const initializeApp = async () => {
  // await store.dispatch(
   //   apiSlice.endpoints.refreshToken.initiate({}, { forceRefetch: true }) 
   // );
-  await store.dispatch(
-        apiSlice.endpoints.loadUser.initiate({}, { forceRefetch: true })
-  );
+
+  
+  //пока await store.dispatch(
+  //пока       apiSlice.endpoints.loadUser.initiate({}, { forceRefetch: true })
+  //поака  );
+
 };
 
   initializeApp()  // запускаем пробую опять после как добавил

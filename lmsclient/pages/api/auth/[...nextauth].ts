@@ -4,7 +4,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 
-console.log( '====[...nextauth].ts===============',process.env.GOOGLE_CLIENT_ID,'red');
+//console.log( '====[...nextauth].ts===============',process.env.GOOGLE_CLIENT_ID,'red');
 
 // опции
 export const authOptions = {

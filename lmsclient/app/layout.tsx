@@ -81,10 +81,10 @@ export default function RootLayout({
   
    
 
-    useEffect(() => {
- //console.log(  '==****************====== итак ПОДКЛЮЧЕНИЕ К СОКЕТУ'  )   
-     socketId.on("connection", () => {}) //подключаемся
-   }, []);
+     useEffect(() => {
+  //console.log(  '==****************====== итак ПОДКЛЮЧЕНИЕ К СОКЕТУ'  )   
+       socketId.on("connection", () => {}) //подключаемся
+     }, []);
 
  
 

@@ -8,6 +8,7 @@ import Heading from "./utils/Heading";
    import Reviews from "./components/Route/Reviews";
   import FAQ from "./components/FAQ/FAQ";
    import Footer from "./components/Footer";
+import PProba from "./components/PProba";
 
 interface Props {}
 
@@ -29,19 +30,20 @@ const Page: FC<Props> = (props) => {
         description=" Ini adaldjf sd odf s ofj sdf pfosjdfsj sdf s"
         keywords="Makan, Enak, Jangan, Makan, Tidur"
       />
-      <Header
+      {/* <Header
 //передаем начальное состояние
            open={open}
         setOpen={setOpen}
         activeItem={activeItem}
        setRoute={setRoute}
          route={route}
-      />  
+      />   */}
       
-          <Hero />   
-       <Courses />
-        <Reviews />
-    <FAQ />  
+          {/* <Hero />    */}
+        {/* <Courses />   */}
+        {/* <Reviews /> */}
+     {/* <FAQ />    */}
+     < PProba />
              <Footer /> 
     </div>
   );

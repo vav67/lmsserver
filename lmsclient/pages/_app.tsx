@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 "paths": {
    "react": [ "./node_modules/@types/react" ]
  }
- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !!!!!!!!https://github.com/pacocoursey/next-themes!!!!!!!!!!!!!!!!!!!!!!!
  * ------------------------------------------------------
  * Что происходит в этом файле:
 1. - Он импортирует AppProps из Next.js, который содержит типы свойств, 

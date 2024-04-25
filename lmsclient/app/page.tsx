@@ -30,21 +30,21 @@ const Page: FC<Props> = (props) => {
         description=" Ini adaldjf sd odf s ofj sdf pfosjdfsj sdf s"
         keywords="Makan, Enak, Jangan, Makan, Tidur"
       />
-      {/* <Header
+       {/* <Header
 //передаем начальное состояние
            open={open}
         setOpen={setOpen}
         activeItem={activeItem}
        setRoute={setRoute}
          route={route}
-      />   */}
+      />   
       
-          {/* <Hero />    */}
-        {/* <Courses />   */}
-        {/* <Reviews /> */}
-     {/* <FAQ />    */}
-     < PProba />
-             {/* <Footer />  */}
+          <Hero />    
+        <Courses />   
+         <Reviews />
+      <FAQ />     */}
+     < PProba /> 
+              {/* <Footer />  */}
     </div>
   );
 };

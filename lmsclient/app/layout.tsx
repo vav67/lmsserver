@@ -57,8 +57,9 @@ export default function RootLayout({
  передавая их как пропсы  => const { data: session } = useSession(); */}
               <SessionProvider> 
  {/* наша тема  */}
- <ThemeProvider attribute= 'class' defaultTheme='system' enableSystem>  
-        
+  
+ <ThemeProvider attribute= 'class'  defaultTheme="light" > 
+      {/*  attribute= 'class' defaultTheme='system' enableSystem  > */}
    
  <Custom>{children}</Custom>    
   {/* <Custom><div>{children}</div> </Custom>      */}

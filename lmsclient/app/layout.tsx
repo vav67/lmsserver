@@ -58,8 +58,8 @@ export default function RootLayout({
               <SessionProvider> 
  {/* наша тема  */}
   
- <ThemeProvider attribute= 'class'  defaultTheme="light" > 
-      {/*  attribute= 'class' defaultTheme='system' enableSystem  > */}
+ <ThemeProvider attribute= 'class'  defaultTheme="light"  > 
+      {/*    attribute= '  class  '  defaultTheme='system' enableSystem   > */}
    
  <Custom>{children}</Custom>    
   {/* <Custom><div>{children}</div> </Custom>      */}

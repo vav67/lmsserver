@@ -24,15 +24,15 @@ const nextConfig = {
     }, 
 
   //     experimental:{
-  //   //    reactRoot: true,
-  //   //    suppressHydrationWarning: true,
+  //   ////    reactRoot: true,
+  //   ////    suppressHydrationWarning: true,
   //   missingSuspenseWithCSRBailout: false, //https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
   // },
  
   async headers() {
     return [
       {
-        // matching all API routes-https://vercel.com/guides/how-to-enable-cors#enabling-cors-using-vercel.json
+    // matching all API routes-https://vercel.com/guides/how-to-enable-cors#enabling-cors-using-vercel.json
         source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },

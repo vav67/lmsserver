@@ -43,9 +43,9 @@ const initializeApp = async () => {
   //  );
 
   
-  //пока await store.dispatch(
-  //пока       apiSlice.endpoints.loadUser.initiate({}, { forceRefetch: true })
-  //поака  );
+   await store.dispatch(
+         apiSlice.endpoints.loadUser.initiate({}, { forceRefetch: true })
+   );
 
 };
 

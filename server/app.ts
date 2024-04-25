@@ -41,7 +41,11 @@ const allowedOrigins = ['http://localhost:3000' ];
 
   app.use(
     cors({
-        origin: ['http://localhost:3000',  'testclient-topaz.vercel.app'],
+        origin: [
+          'http://localhost:3000', 
+         'https://testclient-topaz.vercel.app', 
+        'rediss://default:9207eee037924cb29ea7c58425c3141b@worthy-tadpole-39390.upstash.io:39390',
+              ],
         
     })
 );

@@ -18,25 +18,28 @@ import userRouter from "./routes/user.route";
   //const allowedOrigins = process.env.ORIGIN 
   
 const allowedOrigins = ['http://localhost:3000' ];
-  app.use(cors({
+  // app.use(cors({
 
-    origin: function(origin, callback){
-      // разрешаем запросы без происхождения
-       // (например, мобильные приложения или запросы на curl)
-      if(!origin) return callback(null, true);
+  //   origin: function(origin, callback){
+  //     // разрешаем запросы без происхождения
+  //      // (например, мобильные приложения или запросы на curl)
+  //     if(!origin) return callback(null, true);
       
-      if(allowedOrigins.indexOf(origin)  === -1){
-        var msg = 'The CORS policy for this site does not ' +
-                  'allow access from the specified Origin.';
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
+  //     if(allowedOrigins.indexOf(origin)  === -1){
+  //       var msg = 'The CORS policy for this site does not ' +
+  //                 'allow access from the specified Origin.';
+  //       return callback(new Error(msg), false);
+  //     }
+  //     return callback(null, true);
+  //   },
   
    
   
-    credentials: true,
-  }));
+  //   credentials: true,
+  // }));
+
+  app.use(cors())
+
 
 // body parser
 app.use(express.json({ limit: "50mb" }))

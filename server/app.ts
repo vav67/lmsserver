@@ -17,7 +17,7 @@ import userRouter from "./routes/user.route";
 
   //const allowedOrigins = process.env.ORIGIN 
   
-const allowedOrigins = ['http://localhost:3000' ];
+//const allowedOrigins = ['http://localhost:3000' ];
   // app.use(cors({
 
   //   origin: function(origin, callback){
@@ -40,16 +40,17 @@ const allowedOrigins = ['http://localhost:3000' ];
   //origin - настраивает заголовок Access-Control-Allow-Origin. 
 
   app.use(
-    cors({
-        origin: [
-          'http://localhost:3000', 
-         'https://testclient-topaz.vercel.app', 
-        'rediss://default:9207eee037924cb29ea7c58425c3141b@worthy-tadpole-39390.upstash.io:39390',
-              ],
-        
-    })
+    cors( 
+      { origin: [ 'http://localhost:3000',  'https://testclient-topaz.vercel.app' ], }
+       )
 );
 
+
+// origin: [
+//   'http://localhost:3000', 
+//  'https://testclient-topaz.vercel.app', 
+// 'rediss://default:9207eee037924cb29ea7c58425c3141b@worthy-tadpole-39390.upstash.io:39390',
+//       ],
 
 // body parser
 app.use(express.json({ limit: "50mb" }))

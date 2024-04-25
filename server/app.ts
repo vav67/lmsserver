@@ -37,8 +37,14 @@ const allowedOrigins = ['http://localhost:3000' ];
   
   //   credentials: true,
   // }));
+  //origin - настраивает заголовок Access-Control-Allow-Origin. 
 
-  app.use(cors())
+  app.use(
+    cors({
+        origin: ['http://localhost:3000',  'testclient-topaz.vercel.app'],
+        
+    })
+);
 
 
 // body parser
@@ -101,7 +107,7 @@ app.use( "/api/v1",
 app.get("/test", (req: Request, res: Response, next: NextFunction) => {
     res.status(200).json({
       success: true,
-      message: "API is working",
+      message: "API is working-25- 22:04",
     });
   });
   

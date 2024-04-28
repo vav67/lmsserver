@@ -41,8 +41,11 @@ import userRouter from "./routes/user.route";
 
   app.use(
     cors( 
-      { origin: [ 'http://localhost:3000',  'https://testclient-topaz.vercel.app', 'https://lmsclient.vercel.app' ], }
-       )
+      { origin: [ 'http://localhost:3000',  'https://testclient-topaz.vercel.app', 'https://lmsclient.vercel.app' ],
+    credentials: true, 
+    }
+      
+      )
 );
 
 

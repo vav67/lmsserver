@@ -40,11 +40,7 @@ userRouter.get("/refresh", updateAccessToken);
 //  isAutheticated, //проверка аутен-ции из кука
 //  getUserInfo
 //  )
-userRouter.get("/me",
-//пробую сам добавить
-updateAccessToken, //рефреш до аутентифик-и 06-47-29 "синхронизация" обновляет токен там next()
-
-isAutheticated, getUserInfo);
+userRouter.get("/me", isAutheticated, getUserInfo);
 
  
      userRouter.post("/social-auth", socialAuth);
@@ -68,7 +64,7 @@ isAutheticated, getUserInfo);
 
  userRouter.get(
   "/get-users",
-  updateAccessToken, //рефреш до аутентифик-и 06-47-29 "синхронизация" обновляет токен там next()
+ // updateAccessToken, //рефреш до аутентифик-и 06-47-29 "синхронизация" обновляет токен там next()
   isAutheticated,
   authorizeRoles("admin"),
   getAllUsers

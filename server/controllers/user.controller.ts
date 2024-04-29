@@ -235,6 +235,16 @@ export const updateAccessToken = CatchAsyncError(
    //токен   
   // console.log("----updateAccessToken req.cookies = ", req.cookies)
       const refresh_token = req.cookies.refresh_token as string;
+//---добавлю предложение робота
+// Чтобы избежать этой ошибки, перед извлечением refresh token из куки, вы должны
+// сначала проверить его наличие. Если он отсутствует, вы можете просто перенаправить 
+//пользователя на страницу входа или вернуть сообщение о необходимости войти 
+// для доступа к ресурсам.
+if (!refresh_token) {
+  return next(new ErrorHandler("предложение робота Please login to access this resource", 401));
+}
+
+//---------------------------------------
     //  console.log("----------updateAccessToken refresh_token = ", refresh_token)   
       const decoded = jwt.verify(
         refresh_token,

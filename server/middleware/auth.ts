@@ -13,13 +13,13 @@ require("dotenv").config(); //добавим  .env
      
    //токен доступа берем из куки
      const access_token = req.cookies.access_token as string
- console.log("######## аутентифицирование isAutheticate### - access_token= ", access_token )   
+ //console.log("######## аутентифицирование isAutheticate### - access_token= ", access_token )   
 //access_token=  undefined
  
     if (!access_token) {
  //заменю сам на 
 // if (!access_token ||  (access_token === undefined) ) {
-     console.log("------isAutheticated Пожалуйста, войдите, чтобы получить доступ " )  
+    // console.log("------isAutheticated Пожалуйста, войдите, чтобы получить доступ " )  
     // значит не вошел в систему 
         return next(new ErrorHandler("Please login to access this resource Пожалуйста, войдите, чтобы получить доступ к этому ресурсу", 400) );
     }  

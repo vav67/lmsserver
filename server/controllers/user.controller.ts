@@ -243,7 +243,7 @@ export const updateAccessToken = CatchAsyncError(
 if (!refresh_token) {
   return next(new ErrorHandler("предложение робота Please login to access this resource", 401));
 }
-
+ 
 //---------------------------------------
     //  console.log("----------updateAccessToken refresh_token = ", refresh_token)   
       const decoded = jwt.verify(
@@ -308,7 +308,7 @@ if (!session) {
 export const getUserInfo = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-  console.log("---------контроллер-/me--getUserInfo ")
+  //console.log("---------контроллер-/me--getUserInfo ")
 
       const userId = req.user?._id;
  //         if (userId) {

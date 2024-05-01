@@ -38,10 +38,10 @@ const Page: FC<Props> = (props) => {
        setRoute={setRoute}
          route={route}
       />   
-      
+{/*       
           <Hero />    
         <Courses />   
-         <Reviews />  
+         <Reviews />   */}
       <FAQ />    
      {/* < PProba />  */}
               <Footer />   

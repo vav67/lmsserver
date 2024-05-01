@@ -116,9 +116,9 @@ loadUser: builder.query({
   }),
   async onQueryStarted(arg, { queryFulfilled, dispatch }) {
     try {
-       // console.log( '--------1--------onQueryStarted начало' );
+       
       const result = await queryFulfilled;
-    //  console.log( '---------2-------onQueryStarted начало result=', result );
+ 
       dispatch(
         userLoggedIn({
           accessToken: result.data.accessToken,

@@ -112,8 +112,8 @@ credentials: "include" as const,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
-          const result = await queryFulfilled; //получили ответ
-          dispatch( //вызываем с данными результата для сохранения в store
+          const result = await queryFulfilled;  
+          dispatch(  
             userLoggedIn({
               accessToken: result.data.accessToken,
               user: result.data.user,
